@@ -1,17 +1,22 @@
 package com.allattentionhere.autoplayvideossample.Activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 
-import com.allattentionhere.autoplayvideossample.Adapter.MyVideosAdapter;
 import com.allattentionhere.autoplayvideos.AAH_CustomRecyclerView;
+import com.allattentionhere.autoplayvideossample.Adapter.MyVideosAdapter;
 import com.allattentionhere.autoplayvideossample.Model.MyModel;
 import com.allattentionhere.autoplayvideossample.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -59,7 +64,17 @@ public class MainActivity extends AppCompatActivity {
         urls.add(new MyModel("http://res.cloudinary.com/krupen/image/upload/q_70/v1481795690/2_qwpgis.jpg","name19"));
         urls.add(new MyModel("http://res.cloudinary.com/krupen/image/upload/q_70/v1481795690/3_lfndfq.jpg","name20"));
         urls.add(new MyModel("http://res.cloudinary.com/krupen/image/upload/q_70/v1481795690/1_ybonak.jpg","name21"));
+        String link = "http://res.cloudinary.com/krupen/video/upload/w_300,h_300,c_crop,q_70/v1481795681/2_rp0zyy.mp4";
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+        if (Build.VERSION.SDK_INT >= 14) {
 
+            mediaMetadataRetriever.setDataSource(link, new HashMap<String, String>());
+        }else{
+            mediaMetadataRetriever.setDataSource(link);
+        }
+
+        Bitmap bmFrame = mediaMetadataRetriever.getFrameAtTime(5000000); //unit in microsecond
+        Log.d("meta-bitmap_retriever", " has ss   " + bmFrame);
 
         mAdapter = new MyVideosAdapter(urls, p);
         mLayoutManager = new LinearLayoutManager(this);

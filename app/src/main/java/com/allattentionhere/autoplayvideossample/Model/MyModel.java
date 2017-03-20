@@ -5,27 +5,33 @@ package com.allattentionhere.autoplayvideossample.Model;
  */
 
 public class MyModel {
-    String image_url;
-    String video_url;
-    String name;
 
-    public MyModel(String video_url, String image_url, String name) {
-        this.video_url = video_url;
-        this.image_url = image_url;
+    private String data_url;
+    private String name;
+    private int data_type;
+
+
+    public String getData_url() {
+        return data_url;
+    }
+
+    public void setData_url(String data_url) {
+        this.data_url = data_url;
+    }
+
+    public int getData_type() {
+        return data_type;
+    }
+
+    public void setData_type(int data_type) {
+        this.data_type = data_type;
+    }
+
+    public MyModel(String data_url, String name, int data_type) {
+       this.data_url = data_url;
         this.name = name;
-    }
+        this.data_type = data_type;
 
-    public MyModel(String image_url, String name) {
-        this.image_url = image_url;
-        this.name = name;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getVideo_url() {
-        return video_url;
     }
 
     public String getName() {

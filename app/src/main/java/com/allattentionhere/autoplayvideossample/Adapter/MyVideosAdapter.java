@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.allattentionhere.autoplayvideossample.Model.DataType;
 import com.allattentionhere.autoplayvideossample.Model.MyModel;
 import com.allattentionhere.autoplayvideossample.R;
 import com.allattentionhere.autoplayvideos.AAH_CustomViewHolder;
@@ -49,13 +50,18 @@ public class MyVideosAdapter extends AAH_VideosAdapter {
     @Override
     public void onBindViewHolder(AAH_CustomViewHolder holder, int position) {
         ((MyViewHolder) holder).tv.setText(list.get(position).getName());
+        if(list.get(position).getData_type() == DataType.TYPE_IMAGE){
+            String getDataLink = list.get(position).getData_url();
+            if(getDataLink != null && !getDataLink.isEmpty()){
 
-        //todo
-        holder.setImageUrl(list.get(position).getImage_url());
-        holder.setVideoUrl(list.get(position).getVideo_url());
+                picasso.load(getDataLink).config(Bitmap.Config.RGB_565).into(holder.getAAH_ImageView());
+            }
+            holder.setImageUrl(list.get(position).getData_url());
+        }else{
+            holder.setImageUrl(list.get(position).getData_url());
+        }
         //load image into imageview
-        if (list.get(position).getImage_url() != null && !list.get(position).getImage_url().isEmpty())
-            picasso.load(holder.getImageUrl()).config(Bitmap.Config.RGB_565).into(holder.getAAH_ImageView());
+
 
     }
 
