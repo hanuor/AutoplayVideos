@@ -18,7 +18,7 @@ import java.util.List;
 
 public class AAH_CustomRecyclerView extends RecyclerView {
 
-    private Activity _act;
+    private Activity _activity;
 
     public AAH_CustomRecyclerView(Context context) {
         super(context);
@@ -36,7 +36,7 @@ public class AAH_CustomRecyclerView extends RecyclerView {
     }
 
     public void setActivity(Activity _act) {
-        this._act = _act;
+        this._activity = _act;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class AAH_CustomRecyclerView extends RecyclerView {
                                 AAH_CustomViewHolder cvh = (AAH_CustomViewHolder)holder;
                                 if (i >= 0 && cvh!=null && cvh.getVideoUrl().endsWith(".mp4")) {
                                     Log.d("k9works", "works: ");
-                                    ((AAH_CustomViewHolder) holder).initVideoView(cvh.getVideoUrl(),_act);
+                                    ((AAH_CustomViewHolder) holder).initVideoView(cvh.getVideoUrl(),_activity);
 //                                                                     ((NewHomeAdapter.ArticleViewHolder) holder).playVideo();
                                     Thread t = new Thread() {
                                         public void run() {
